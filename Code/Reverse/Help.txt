@@ -1,0 +1,11 @@
+# To read all strings in Executable file
+strings filename
+
+# To Disassembly only executable code (And save it in file)
+objdump -d filename > filename.asm
+
+# To Get any calls for Dynamic Libraries
+ltrace filename
+
+# To Get all system calls and signals that produced process
+strace filename
