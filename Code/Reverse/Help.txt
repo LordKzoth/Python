@@ -1,11 +1,100 @@
-# To read all strings in Executable file
+# DISASSEMBLING
+# = To read all strings in Executable file
 strings filename
 
-# To Disassembly only executable code (And save it in file)
+#-------------------------------------------------------------------------------------------------------
+
+# = To Disassembly only executable code (And save it in file)
 objdump -d filename > filename.asm
 
-# To Get any calls for Dynamic Libraries
+# >> Assembler CheatSheet <<
+# >>>>>> Assembler Registers <<<<<<
+# = Data Registers
+EAX, EBX, ECX, EDX		-> 32-bit (Complite Registers)
+AX, BX, CX, DX 			-> 16-bit (Lower halves of the 32-bit Registers)
+AH, AL, BH, BL, CH, CL, DH, DL	-> 8-bit (Lower and Higher halves of 16-bit Registers)
+
+EAX
+________________ ________ ________	32-bit
+                 AX
+		 ________ ________	16-bit
+		 AH       AL
+		 ________ ________	8-bit and 8-bit
+
+AX is the primary accumulator: 		it is used in input/output and most arithmetic instructions.
+BX is known as the base register: 	it could be used in indexed addressing.
+CX is known as the count register: 	it is store the loop count in iterative operations.
+DX is known as the data register: 	it is also used in input/output and arithmetic operations.
+
+# = Pointer Registers
+EIP, ESP, EBP	-> 32-bit
+IP, SP, BP	-> 16-bit
+
+Instruction Pointer (IP) − The 16-bit IP register stores the offset address of the next instruction to be executed. IP in association with the CS register (as CS:IP) gives the complete address of the current instruction in the code segment.
+
+Stack Pointer (SP) − The 16-bit SP register provides the offset value within the program stack. SP in association with the SS register (SS:SP) refers to be current position of data or address within the program stack.
+
+Base Pointer (BP) − The 16-bit BP register mainly helps in referencing the parameter variables passed to a subroutine. The address in SS register is combined with the offset in BP to get the location of the parameter. BP can also be combined with DI and SI as base register for special addressing.
+
+# = Index Registers
+ESI, EDI	-> 32-bit
+SI, DI		-> 16-bit
+
+Source Index (SI) 	− It is used as source index for string operations.
+Destination Index (DI) 	− It is used as destination index for string operations.
+
+# = Control Registers
+32-bit flag register (there are all flags have 0 or 1 value)
+
+                 O  D  I  T  S  Z     A     P     C
+... 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+
+[Full description -> https://www.tutorialspoint.com/assembly_programming/assembly_registers.htm#]
+Overflow Flag (OF)
+Direction Flag (DF)
+Interrupt Flag (IF)
+Trap Flag (TF)
+Sign Flag (SF)
+Zero Flag (ZF)
+Auxiliary Carry Flag (AF)
+Parity Flag (PF)
+Carry Flag (CF)
+
+# = Segment Registers
+CS, DA, SS	-> 16-bit
+
+Code Segment (CS) − It contains all the instructions to be executed (stores the starting address of the code segment)
+Data Segment (DS) − It contains data, constants and work areas (stores the starting address of the data segment)
+Stack Segment (SS) − It contains data and return addresses of procedures or subroutines (stores the starting address of the stack)
+
+# >>>>>> Assebler Functions <<<<<<
+# = Functions
+push _op1_	-> Add value from _op1_ into stack
+pop _op1_	-> Exctract value from stack into _op1_
+TO BE CONTINUED (Tomorrow ^-^)
+
+
+#=======================================================================================================
+
+
+# DEBUGING
+# = Debuging Tool
+gdb filename
+Example:
+	(gdb) file ./start	-> Load File
+	(gdb) disass _start	-> Disassembly _start section
+	(gdb) break _start	-> Set break point on _start function
+		(gdb) continue	-> Continue to next break point
+		(gdb) step	-> Execute next line
+		(gdb) next	-> Execute next line (without sub-routing execution)
+	(gdb) delete _start	-> Delete break point at _start function
+
+#-------------------------------------------------------------------------------------------------------
+
+# = To Get any calls for Dynamic Libraries
 ltrace filename
 
-# To Get all system calls and signals that produced process
+#------------------------------------------------------------------------------------------------------- 
+
+# = To Get all system calls and signals that produced process 
 strace filename
