@@ -6,6 +6,7 @@ strings filename
 
 # = To Disassembly only executable code (And save it in file)
 objdump -d filename > filename.asm
+(Can replacing _op1_ and _op2_ (Dest and Src in other words))
 
 # >> Assembler CheatSheet <<
 # >>>>>> Assembler Registers <<<<<<
@@ -69,9 +70,17 @@ Stack Segment (SS) − It contains data and return addresses of procedures or su
 
 # >>>>>> Assebler Functions <<<<<<
 # = Functions
-push _op1_	-> Add value from _op1_ into stack
-pop _op1_	-> Exctract value from stack into _op1_
-TO BE CONTINUED (Tomorrow ^-^)
+push 	_op1_		-> Add value from _op1_ into stack
+pop 	_op1_		-> Exctract value from stack into _op1_
+xor	_op1_, _op2_	-> _op1_ = (_op1_ ^ _op2_)
+mov	_op1_, _op2_	-> Copy value from _op2_ to _op1_
+xchg	_op1_, _op2_	-> Exchange data between _op1_ and _op2_
+int	_op1_		-> Calling break function (depending on _op1_ value)
+add	_op1_, _op2_	-> _op1_ = (_op1_ + _op2_)
+sub	_op1_, _op2_    -> _op1_ = (_op1_ - _op2_)
+ret			-> Return from procedure
+inc	_op1_		-> _op1_ = _op1_ + 1
+dec	_op2_		-> _op1_ = _op1_ - 1
 
 
 #=======================================================================================================
